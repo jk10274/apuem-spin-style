@@ -1,0 +1,19 @@
+/* gif in upper left corner */
+#gif {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: 100.5px;
+    background: url(images/gif.gif) no-repeat;
+}
+
+/* div centered horizontally */
+#centered {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    margin-left: -100px;
+    width: 200px;
+    height: 100.5px;
+}

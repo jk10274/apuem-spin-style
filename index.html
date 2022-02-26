@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APUEM SPINS</title> 
+    <link rel="stylesheet" href="style.css">  
+    <script src="main.js"></script>
+</head>
+<body id="body">
+    <!-- Add Gif on upper left corner-->
+    <div>
+        <img id="gif" src="images/apuem_spinning.gif" alt="">
+    </div>
+    <!-- center container for text-->
+    <div id="centered">
+        <p id="text">hey</p>
+        <p id="text2">hey</p>
+        <p id="text3">hey</p>
+        <p id="text4">hey</p>
+    </div>
+
+
+    <script>
+        // update text every second to mouse position
+        document.addEventListener('mousemove', (event) => {
+            document.getElementById("text3").innerHTML = `Mouse X: ${event.clientX}, Mouse Y: ${event.clientY}`;
+});
+        
+        setInterval(function(){
+            var d = new Date();
+            var hours = d.getHours();
+            var minutes = d.getMinutes();
+            var seconds = d.getSeconds();
+            var text = hours + ":" + minutes + ":" + seconds;
+            document.getElementById("text").innerHTML = text;
+        }, 1000);
+
+
+        document.getElementById("text2").innerHTML = navigator.userAgent;
+
+        // show user location
+        /* if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                document.getElementById("text4").innerHTML = `Latitude: ${pos.lat}, Longitude: ${pos.lng}`;
+            });
+        } else {
+            document.getElementById("text4").innerHTML = "Geolocation is not supported by this browser.";
+        } */
+
+        // show user ip address location
+        /* var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.ipify.org?format=json', true);
+        xhr.onload = function() {
+            if (this.status == 200) {
+                var ip = JSON.parse(this.responseText);
+                document.getElementById("text4").innerHTML = `IP: ${ip.ip}`;
+            }
+        };
+        xhr.send(); */
+
+        // get geo location from ip address
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://ipapi.co/json', true);
+        xhr.onload = function() {
+            if (this.status == 200) {
+                var ip = JSON.parse(this.responseText);
+                document.getElementById("text4").innerHTML = `${ip.city}, ${ip.region}, ${ip.country_name}`;
+            }
+        };
+        xhr.send();
+
+        // body background color flicker effect
+        var body = document.getElementById("body");
+        var color = ["#ffffff", "#da2020"];
+        var i = 0;
+        setInterval(function(){
+            body.style.backgroundColor = color[i];
+            i++;
+            if (i == color.length) {
+                i = 0;
+            }
+        }, 500);
+        
+
+
+
+    </script>
+</body>
+</html>
