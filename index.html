@@ -76,6 +76,9 @@
         xhr.send();
 
         // body background color flicker effect
+
+        // set time to random number between 100 and 1000
+        var time = Math.floor(Math.random() * (3000 - 100 + 1)) + 100;
         var body = document.getElementById("body");
         var color = ["#ffffff", "#da2020"];
         var i = 0;
@@ -85,7 +88,8 @@
             if (i == color.length) {
                 i = 0;
             }
-        }, 500);
+            time = Math.floor(Math.random() * (3000 - 100 + 1)) + 100;
+        }, time);
         
 
 
